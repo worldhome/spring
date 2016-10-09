@@ -5,7 +5,7 @@
 	<bean id="user" name="user1" class="com.keeper.vo.User">
 		<property name="userName" value="Hello world" />
 	</bean>
-	<bean id="user2" name="user1" class="com.keeper.vo.User">
+	<bean id="user2" name="user4" class="com.keeper.vo.User">
 		<property name="userName" value="Hello world1" />
 	</bean>
 	<bean id="userDao" class="com.keeper.impl.UserDaoImpl" />
@@ -16,6 +16,17 @@
 				<ref bean="user" />
 				<ref bean="user1" />
 			</list>
+		</property>
+		<property name="users">
+			<array>
+				<ref bean="user" />
+				<ref bean="user1" />
+			</array>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="1" value-ref="user"/>
+			</map>
 		</property>
 	</bean>
 </beans>
