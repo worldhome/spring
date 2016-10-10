@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 	<bean id="user" name="user1" class="com.keeper.vo.User">
 		<property name="userName" value="Hello world" />
 	</bean>
@@ -24,9 +25,10 @@
 			</array>
 		</property>
 		<property name="map">
-			<map>
-				<entry key="1" value-ref="user"/>
-			</map>
+			<util:map map-class="java.util.LinkedHashMap">
+				<entry key="1" value-ref="user"></entry>
+			</util:map>
 		</property>
 	</bean>
+	
 </beans>

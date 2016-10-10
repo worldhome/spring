@@ -3,6 +3,7 @@ package com.keeper.test;
 import java.util.List;
 
 import org.junit.Test;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -55,5 +56,12 @@ public class SpringTest {
 				System.out.println(user);
 			}
 		}
+		User[] users = userGroup.getUsers();
+		for (User user : users) {
+			System.out.println(user.toString());
+		}
+		System.out.println(userGroup.getMap());
+		System.out.println(userGroup.getProperties());
+	
 	}
 }
