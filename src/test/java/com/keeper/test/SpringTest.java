@@ -7,6 +7,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.greenpineyu.fel.FelEngine;
+import com.greenpineyu.fel.FelEngineImpl;
+import com.greenpineyu.fel.context.FelContext;
 import com.keeper.UserDao;
 import com.keeper.util.AppConfig;
 import com.keeper.vo.User;
@@ -74,13 +77,35 @@ public class SpringTest {
 		User user = (User) applicationContext.getBean("user8");
 		System.out.println(user.toString());
 	}
+
 	/**
 	 * test5
 	 */
 	@Test
-	public void test5(){
+	public void test5() {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		User user = (User) applicationContext.getBean("user7");
 		System.out.println(user.toString());
+	}
+
+	/**
+	 * init-method destroy-method
+	 */
+	@Test
+	public void test6() {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) applicationContext.getBean("user9");
+		System.out.println(user.toString());
+	}
+
+	public static void main(String[] args) {
+		/**
+		 * 0.5%以上 1分 0.4%-0.5% 0.8分 0.3%-0.4% 0.6分 0.2%-0.3% 0.4分 0.2%以下 0.2分
+		 */
+		FelEngine fel = new FelEngineImpl();
+		FelContext ctx = fel.getContext();
+		ctx.set("i", 0.23);
+		Object result = fel.eval("i>0.5?1:((i>=0.4&&i<=0.5)?0.8:((i>=0.3&&i<0.4)?0.6:((i>=0.2&&i<0.3)?0.4:((i<0.2)?0.2:0))))");
+		System.out.println(result);
 	}
 }

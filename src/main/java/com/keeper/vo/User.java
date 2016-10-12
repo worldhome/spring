@@ -2,7 +2,7 @@ package com.keeper.vo;
 
 import java.util.Date;
 
-public class User extends Parent{
+public class User extends Parent {
 
 	private String userName;
 	private String password;
@@ -37,4 +37,11 @@ public class User extends Parent{
 		return "User [userName=" + userName + ", password=" + password + "]";
 	}
 
+	public void init() {
+		this.password = "123455";
+	}
+
+	public void destroy() {
+		this.password = "777777";
+	}
 }

@@ -67,5 +67,6 @@
 	<bean id="user8" class="com.keeper.vo.User" parent="userParent">
 		<property name="userName" value="administrator" />
 	</bean>
-
+	<bean id="user9" class="com.keeper.vo.User" init-method="init" destroy-method="destroy"  >
+	</bean>
 </beans>
