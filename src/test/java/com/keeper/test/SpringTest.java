@@ -3,7 +3,6 @@ package com.keeper.test;
 import java.util.List;
 
 import org.junit.Test;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,6 +18,7 @@ public class SpringTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		User user = (User) context.getBean("user1");
 		System.out.println(user.getUserName());
+		System.out.println(user.getRegisterDate());
 		user = (User) context.getBean("user3");
 		System.out.println(user.getUserName());
 	}
@@ -44,7 +44,7 @@ public class SpringTest {
 	}
 
 	/**
-	 * list
+	 * list set array map property
 	 */
 	@Test
 	public void test3() {
@@ -62,6 +62,25 @@ public class SpringTest {
 		}
 		System.out.println(userGroup.getMap());
 		System.out.println(userGroup.getProperties());
-	
+
+	}
+
+	/**
+	 * parent
+	 */
+	@Test
+	public void test4() {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) applicationContext.getBean("user8");
+		System.out.println(user.toString());
+	}
+	/**
+	 * test5
+	 */
+	@Test
+	public void test5(){
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) applicationContext.getBean("user7");
+		System.out.println(user.toString());
 	}
 }

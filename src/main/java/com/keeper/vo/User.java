@@ -1,9 +1,20 @@
 package com.keeper.vo;
 
-public class User {
+import java.util.Date;
+
+public class User extends Parent{
 
 	private String userName;
 	private String password;
+	private Date registerDate;
+
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
 
 	public String getUserName() {
 		return userName;

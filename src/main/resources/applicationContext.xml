@@ -3,8 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:system.properties</value>
+			</list>
+		</property>
+	</bean>
 	<bean id="user" name="user1" class="com.keeper.vo.User">
 		<property name="userName" value="Hello world" />
+		<property name="registerDate" value="2017-12-22" />
 	</bean>
 	<bean id="user2" name="user4" class="com.keeper.vo.User">
 		<property name="userName" value="Hello world1" />
@@ -30,5 +39,33 @@
 			</util:map>
 		</property>
 	</bean>
-	
+	<bean id="editor" class="com.keeper.util.DateSupportEditor">
+		<property name="format" value="yyyy-MM-dd" />
+	</bean>
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="propertyEditorRegistrars">
+			<array>
+				<bean class="com.keeper.util.DateEditorRegistrar">
+					<property name="editor">
+						<bean class="com.keeper.util.DateSupportEditor">
+							<property name="format" value="${date.format}" />
+						</bean>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+	<bean id="parent" class="com.keeper.vo.Parent">
+		<property name="siteCode" value="BANK" />
+	</bean>
+	<bean id="user7" class="com.keeper.vo.User" parent="parent">
+		<property name="password" value="123456" />
+	</bean>
+	<bean id="userParent" class="com.keeper.vo.User">
+		<property name="password" value="1234567" />
+	</bean>
+	<bean id="user8" class="com.keeper.vo.User" parent="userParent">
+		<property name="userName" value="administrator" />
+	</bean>
+
 </beans>
