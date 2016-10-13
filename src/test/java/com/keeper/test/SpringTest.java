@@ -6,12 +6,14 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Controller;
 
 import com.greenpineyu.fel.FelEngine;
 import com.greenpineyu.fel.FelEngineImpl;
 import com.greenpineyu.fel.context.FelContext;
 import com.keeper.UserDao;
 import com.keeper.util.AppConfig;
+import com.keeper.vo.TUser;
 import com.keeper.vo.User;
 import com.keeper.vo.UserGroup;
 
@@ -98,6 +100,14 @@ public class SpringTest {
 		System.out.println(user.toString());
 	}
 
+	@Test
+	public void test7(){
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		TUser user = (TUser) applicationContext.getBean(TUser.class);
+		System.out.println(user.toString());
+	}
+	
+	
 	public static void main(String[] args) {
 		/**
 		 * 0.5%以上 1分 0.4%-0.5% 0.8分 0.3%-0.4% 0.6分 0.2%-0.3% 0.4分 0.2%以下 0.2分

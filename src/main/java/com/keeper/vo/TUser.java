@@ -2,8 +2,11 @@ package com.keeper.vo;
 
 import java.util.Date;
 
-public class User extends Parent {
-	
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class TUser {
+
 	private String userName;
 	private String password;
 	private Date registerDate;
@@ -35,13 +38,5 @@ public class User extends Parent {
 	@Override
 	public String toString() {
 		return "User [userName=" + userName + ", password=" + password + "]";
-	}
-
-	public void init() {
-		this.password = "123455";
-	}
-
-	public void destroy() {
-		this.password = "777777";
 	}
 }
