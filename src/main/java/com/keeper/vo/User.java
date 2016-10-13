@@ -3,7 +3,7 @@ package com.keeper.vo;
 import java.util.Date;
 
 public class User extends Parent {
-	
+
 	private String userName;
 	private String password;
 	private Date registerDate;
@@ -34,7 +34,7 @@ public class User extends Parent {
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", password=" + password + "]";
+		return "User [userName=" + userName + ", password=" + password + ", registerDate=" + registerDate + "]";
 	}
 
 	public void init() {

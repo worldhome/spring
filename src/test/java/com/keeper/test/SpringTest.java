@@ -100,14 +100,23 @@ public class SpringTest {
 		System.out.println(user.toString());
 	}
 
+	/**
+	 * @Controller
+	 */
 	@Test
-	public void test7(){
+	public void test7() {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		TUser user = (TUser) applicationContext.getBean(TUser.class);
 		System.out.println(user.toString());
 	}
-	
-	
+
+	@Test
+	public void test8() {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		UserGroup userGroup = applicationContext.getBean(UserGroup.class);
+		System.out.println(userGroup.toString());
+	}
+
 	public static void main(String[] args) {
 		/**
 		 * 0.5%以上 1分 0.4%-0.5% 0.8分 0.3%-0.4% 0.6分 0.2%-0.3% 0.4分 0.2%以下 0.2分
