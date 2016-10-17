@@ -109,7 +109,9 @@ public class SpringTest {
 		TUser user = (TUser) applicationContext.getBean(TUser.class);
 		System.out.println(user.toString());
 	}
-
+	/**
+	 * @Autowired
+	 */
 	@Test
 	public void test8() {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
