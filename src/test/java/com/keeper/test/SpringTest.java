@@ -109,6 +109,7 @@ public class SpringTest {
 		TUser user = (TUser) applicationContext.getBean(TUser.class);
 		System.out.println(user.toString());
 	}
+
 	/**
 	 * @Autowired
 	 */
@@ -117,6 +118,47 @@ public class SpringTest {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 		UserGroup userGroup = applicationContext.getBean(UserGroup.class);
 		System.out.println(userGroup.toString());
+	}
+
+	/**
+	 * @MethodBeforeAdvice
+	 */
+	@Test
+	public void test9() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) context.getBean("userProxy");
+		user.getPassword();
+	}
+	
+	/**
+	 * @AfterReturningAdvice
+	 */
+	@Test
+	public void test10() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) context.getBean("userProxy1");
+		System.out.println("#####");
+		user.getPassword();
+	}
+	/**
+	 * @AfterThrowing
+	 */
+	@Test
+	public void test11() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) context.getBean("userProxy2");
+		System.out.println("#####");
+		user.getPassword();
+	}
+	/**
+	 * @MethodInterceptor
+	 */
+	@Test
+	public void test12() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) context.getBean("userProxy3");
+		System.out.println("#####");
+		user.getPassword();
 	}
 
 	public static void main(String[] args) {

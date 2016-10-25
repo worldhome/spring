@@ -69,7 +69,46 @@
 	<bean id="user8" class="com.keeper.vo.User" parent="userParent">
 		<property name="userName" value="administrator" />
 	</bean>
-	<bean id="user9" class="com.keeper.vo.User" init-method="init" destroy-method="destroy"  >
+	<bean id="user9" class="com.keeper.vo.User" init-method="init"
+		destroy-method="destroy">
 	</bean>
-	<context:component-scan base-package="com.keeper.vo"/>
+	<context:component-scan base-package="com.keeper.vo" />
+	<bean id="userProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="user" />
+		<property name="interceptorNames">
+			<array>
+				<value>keepMethodBeforeAdvice</value>
+			</array>
+		</property>
+	</bean>
+	<bean id="keepMethodBeforeAdvice" class="com.keeper.aop.KeepMethodBeforeAdvice" />
+	<bean id="keepAfterReturningAdvice" class="com.keeper.aop.KeepAfterReturningAdvice" />
+	<bean id="keepMethodInterceptor" class="com.keeper.aop.KeepMethodInterceptor" />
+
+	<bean id="userProxy1" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="user" />
+		<property name="interceptorNames">
+			<array>
+				<value>keepAfterReturningAdvice</value>
+			</array>
+		</property>
+	</bean>
+	<bean id="keepThrowsAdvice" class="com.keeper.aop.KeepThrowsAdvice" />
+	<bean id="userProxy2" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="user" />
+		<property name="interceptorNames">
+			<array>
+				<value>keepThrowsAdvice</value>
+			</array>
+		</property>
+	</bean>
+	<bean id="userProxy3" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="user" />
+		<property name="interceptorNames">
+			<array>
+				<value>keepMethodInterceptor</value>
+			</array>
+		</property>
+	</bean>
+
 </beans>

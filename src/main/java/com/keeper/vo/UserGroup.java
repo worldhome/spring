@@ -1,6 +1,5 @@
 package com.keeper.vo;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -13,15 +12,15 @@ public class UserGroup {
 	private User[] users;
 	private Map<String, User> map;
 	@Autowired
-	private User user202;
+	private User user2;
 	private Properties properties;
 
-	public User getUser202() {
-		return user202;
+	public User getUser2() {
+		return user2;
 	}
 
-	public void setUser202(User user202) {
-		this.user202 = user202;
+	public void setUser2(User user2) {
+		this.user2 = user2;
 	}
 
 	public List<User> getUserList() {
@@ -56,10 +55,6 @@ public class UserGroup {
 		this.properties = properties;
 	}
 
-	@Override
-	public String toString() {
-		return "UserGroup [userList=" + userList + ", users=" + Arrays.toString(users) + ", map=" + map + ", user=" + user202 + ", properties="
-				+ properties + "]";
-	}
-	
+
+
 }

@@ -24,7 +24,11 @@ public class User extends Parent {
 		this.userName = userName;
 	}
 
-	public String getPassword() {
+	public String getPassword()  {
+		System.out.println("#####进行中#####");
+		if(1==1){
+			//throw new RuntimeException("11");
+		}
 		return password;
 	}
 
