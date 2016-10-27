@@ -1,5 +1,6 @@
 package com.keeper.dao.impl;
 
+import com.keeper.dao.UserDao;
 import com.keeper.vo.User;
 
 public class User2DaoImpl implements UserDao {

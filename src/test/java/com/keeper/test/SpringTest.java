@@ -12,7 +12,7 @@ import org.springframework.oxm.XmlMappingException;
 import com.greenpineyu.fel.FelEngine;
 import com.greenpineyu.fel.FelEngineImpl;
 import com.greenpineyu.fel.context.FelContext;
-import com.keeper.dao.impl.UserDao;
+import com.keeper.dao.UserDao;
 import com.keeper.util.AppConfig;
 import com.keeper.util.XmlConvert;
 import com.keeper.vo.TUser;
