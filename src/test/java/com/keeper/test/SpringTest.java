@@ -12,9 +12,11 @@ import org.springframework.oxm.XmlMappingException;
 import com.greenpineyu.fel.FelEngine;
 import com.greenpineyu.fel.FelEngineImpl;
 import com.greenpineyu.fel.context.FelContext;
+import com.keeper.dao.GroupDao;
 import com.keeper.dao.UserDao;
 import com.keeper.util.AppConfig;
 import com.keeper.util.XmlConvert;
+import com.keeper.vo.Group;
 import com.keeper.vo.TUser;
 import com.keeper.vo.User;
 import com.keeper.vo.UserGroup;
@@ -191,6 +193,18 @@ public class SpringTest {
 		System.out.println(xml);
 		user = (User) xmlConvert.convertObject(xml);
 		System.out.println(user);
+	}
+
+	/**
+	 * jdbcTemplate
+	 */
+	@Test
+	public void test15() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		GroupDao groupDao = (GroupDao) context.getBean("groupDao");
+		Group group = new Group();
+		group.setGroupName("groupName");
+		groupDao.insert(group);
 	}
 
 	public static void main(String[] args) {

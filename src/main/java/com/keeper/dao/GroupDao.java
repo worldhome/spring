@@ -1,7 +1,7 @@
 package com.keeper.dao;
 
-import com.keeper.vo.User;
+import com.keeper.vo.Group;
 
 public interface GroupDao {
-	public int insert(User user);
+	public int insert(Group group);
 }
