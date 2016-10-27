@@ -22,8 +22,8 @@
 	<bean id="user2" name="user4" class="com.keeper.vo.User">
 		<property name="userName" value="Hello world1" />
 	</bean>
-	<bean id="userDao" class="com.keeper.impl.UserDaoImpl" />
-	<bean class="com.keeper.impl.User2DaoImpl" />
+	<bean id="userDao" class="com.keeper.dao.impl.UserDaoImpl" />
+	<bean class="com.keeper.dao.impl.User2DaoImpl" />
 	<bean id="userGroup" class="com.keeper.vo.UserGroup">
 		<property name="userList">
 			<list value-type="com.keeper.vo.User">
@@ -116,7 +116,7 @@
 	<bean class="com.keeper.aop.KeepAspect" id="keepAspect" />
 	<aop:config>
 		<aop:aspect ref="keepAspect">
-			<aop:pointcut expression="execution(* com.keeper.impl.*.*(..))"
+			<aop:pointcut expression="execution(* com.keeper.dao.impl.*.*(..))"
 				id="keepPointcut" />
 			<aop:before method="before" pointcut-ref="keepPointcut" />
 			<aop:after method="after" pointcut-ref="keepPointcut" />
@@ -135,4 +135,13 @@
 		<property name="mappingLocation" value="classpath:mapping.xml" />
 	</bean>
 	<!-- <aop:aspectj-autoproxy/> <bean id="keepAspectAnnotation" class="com.keeper.aop.KeepAspectAnnotation"/> -->
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="url" value="jdbc:mysql://localhost:3306/test"/>
+			<property name="username" value="root"/>
+			<property name="password" value="a"/>
+			<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	</bean>
+	
+	
 </beans>
