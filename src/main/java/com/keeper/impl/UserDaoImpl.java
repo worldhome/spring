@@ -5,8 +5,9 @@ import com.keeper.vo.User;
 
 public class UserDaoImpl implements UserDao {
 
-	public void insert(User user) {
+	public int insert(User user) {
 		System.out.println("userDaoImpl");
+		return 3;
 	}
 
 }

@@ -33,6 +33,21 @@
 			<artifactId>fel</artifactId>
 			<version>0.8</version>
 		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.9</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-oxm</artifactId>
+		    <version>4.3.3.RELEASE</version>
+		</dependency>
+		<dependency>
+    <groupId>org.codehaus.castor</groupId>
+    <artifactId>castor-xml</artifactId>
+    <version>1.4.1</version>
+</dependency>
 	</dependencies>
 	<build>
 		<finalName>spring</finalName>

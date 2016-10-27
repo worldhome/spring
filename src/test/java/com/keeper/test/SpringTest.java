@@ -1,18 +1,20 @@
 package com.keeper.test;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Controller;
+import org.springframework.oxm.XmlMappingException;
 
 import com.greenpineyu.fel.FelEngine;
 import com.greenpineyu.fel.FelEngineImpl;
 import com.greenpineyu.fel.context.FelContext;
 import com.keeper.UserDao;
 import com.keeper.util.AppConfig;
+import com.keeper.util.XmlConvert;
 import com.keeper.vo.TUser;
 import com.keeper.vo.User;
 import com.keeper.vo.UserGroup;
@@ -129,7 +131,7 @@ public class SpringTest {
 		User user = (User) context.getBean("userProxy");
 		user.getPassword();
 	}
-	
+
 	/**
 	 * @AfterReturningAdvice
 	 */
@@ -140,6 +142,7 @@ public class SpringTest {
 		System.out.println("#####");
 		user.getPassword();
 	}
+
 	/**
 	 * @AfterThrowing
 	 */
@@ -150,6 +153,7 @@ public class SpringTest {
 		System.out.println("#####");
 		user.getPassword();
 	}
+
 	/**
 	 * @MethodInterceptor
 	 */
@@ -159,6 +163,34 @@ public class SpringTest {
 		User user = (User) context.getBean("userProxy3");
 		System.out.println("#####");
 		user.getPassword();
+	}
+
+	/**
+	 * aop
+	 */
+	@Test
+	public void test13() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		UserDao userDao = (UserDao) context.getBean("userDao");
+		userDao.insert(new User());
+	}
+
+	/**
+	 * 
+	 * @param args
+	 * @throws IOException
+	 * @throws XmlMappingException
+	 */
+	@Test
+	public void test14() throws XmlMappingException, IOException {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		XmlConvert xmlConvert = (XmlConvert) context.getBean("xmlConvert");
+		User user = new User();
+		user.setPassword("1234556");
+		String xml = xmlConvert.convertXml(user);
+		System.out.println(xml);
+		user = (User) xmlConvert.convertObject(xml);
+		System.out.println(user);
 	}
 
 	public static void main(String[] args) {
