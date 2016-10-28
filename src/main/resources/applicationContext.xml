@@ -2,8 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -129,26 +128,42 @@
 			<aop:around method="around" pointcut-ref="keepPointcut" />
 		</aop:aspect>
 	</aop:config>
-	<bean id="xmlConvert" class="com.keeper.util.XmlConvert" >
-		<property name="marshaller" ref="castorMarshaller"/>
-		<property name="unmarshaller" ref="castorMarshaller"/>
+	<bean id="xmlConvert" class="com.keeper.util.XmlConvert">
+		<property name="marshaller" ref="castorMarshaller" />
+		<property name="unmarshaller" ref="castorMarshaller" />
 	</bean>
 	<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
 		<property name="mappingLocation" value="classpath:mapping.xml" />
 	</bean>
 	<!-- <aop:aspectj-autoproxy/> <bean id="keepAspectAnnotation" class="com.keeper.aop.KeepAspectAnnotation"/> -->
-	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="url" value="jdbc:mysql://localhost:3306/test"/>
-			<property name="username" value="root"/>
-			<property name="password" value="a"/>
-			<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="url" value="jdbc:mysql://localhost:3306/test" />
+		<property name="username" value="root" />
+		<property name="password" value="a" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 	</bean>
 	<bean id="groupDao" class="com.keeper.dao.impl.GroupDaoImpl">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.sina.com" />
+		<property name="username" value="xyzmmtt@sina.com" />
+		<property name="password" value="a123456789" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="email" class="com.keeper.mail.Email">
+		<property name="sender" ref="sender"/>
+	</bean>
 </beans>

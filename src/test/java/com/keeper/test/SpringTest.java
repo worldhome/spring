@@ -15,6 +15,7 @@ import com.greenpineyu.fel.FelEngineImpl;
 import com.greenpineyu.fel.context.FelContext;
 import com.keeper.dao.GroupDao;
 import com.keeper.dao.UserDao;
+import com.keeper.mail.Email;
 import com.keeper.util.AppConfig;
 import com.keeper.util.XmlConvert;
 import com.keeper.vo.Group;
@@ -242,6 +243,16 @@ public class SpringTest {
 		group.setDescription("1232");
 		groupList.add(group);
 		groupDao.insert(group);
+	}
+
+	/**
+	 * sendMail
+	 */
+	@Test
+	public void test18() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		Email email = (Email) context.getBean("email");
+		email.sendEmail();
 	}
 
 	public static void main(String[] args) {
