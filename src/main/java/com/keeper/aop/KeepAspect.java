@@ -21,7 +21,7 @@ public class KeepAspect {
 		System.out.println("afterThrowing");
 	}
 
-	public Object around(ProceedingJoinPoint joinPoint) {
+	public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
 		Object obj = null;
 		try {
 			System.out.println("around1");
@@ -30,7 +30,7 @@ public class KeepAspect {
 			return obj;
 		} catch (Throwable e) {
 			e.printStackTrace();
+			throw e;
 		}
-		return obj;
 	}
 }

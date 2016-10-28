@@ -1,6 +1,7 @@
 package com.keeper.test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -196,7 +197,7 @@ public class SpringTest {
 	}
 
 	/**
-	 * jdbcTemplate
+	 * jdbcTemplate insert
 	 */
 	@Test
 	public void test15() {
@@ -204,6 +205,42 @@ public class SpringTest {
 		GroupDao groupDao = (GroupDao) context.getBean("groupDao");
 		Group group = new Group();
 		group.setGroupName("groupName");
+		groupDao.insert(group);
+	}
+
+	/**
+	 * 
+	 * @param jdbcTemplate
+	 *            查询
+	 */
+	@Test
+	public void test16() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		GroupDao groupDao = (GroupDao) context.getBean("groupDao");
+		Group group = groupDao.getGroupById("groupName");
+		System.out.println(group);
+		group = groupDao.getGroupById2("groupName");
+		System.out.println(group);
+		List<Group> groupList = groupDao.getGroupList();
+		System.out.println(groupList);
+	}
+
+	/**
+	 * batch
+	 */
+	@Test
+	public void test17() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		GroupDao groupDao = (GroupDao) context.getBean("groupDao");
+		List<Group> groupList = new ArrayList<Group>();
+		Group group = new Group();
+		group.setGroupName("groupName");
+		group.setDescription("123");
+		groupList.add(group);
+		group = new Group();
+		group.setGroupName("groupName3");
+		group.setDescription("1232");
+		groupList.add(group);
 		groupDao.insert(group);
 	}
 

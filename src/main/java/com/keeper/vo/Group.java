@@ -21,4 +21,9 @@ public class Group {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "Group [groupName=" + groupName + ", description=" + description + "]";
+	}
+
 }
