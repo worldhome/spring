@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -247,12 +249,13 @@ public class SpringTest {
 
 	/**
 	 * sendMail
+	 * @throws MessagingException 
 	 */
 	@Test
-	public void test18() {
+	public void test18() throws MessagingException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		Email email = (Email) context.getBean("email");
-		email.sendEmail();
+		email.sendEmail1();
 	}
 
 	public static void main(String[] args) {
